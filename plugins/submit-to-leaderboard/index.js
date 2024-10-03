@@ -39,7 +39,7 @@ module.exports = {
     });
   },
 
-  onPostBuild: async ({ constants }) => {
+  onSuccess: async ({ constants }) => {
     console.log('Build success, time to report this site to the leaderboard');
 
     // If the site has been deployed, we'll send the score to the leaderboard
@@ -57,30 +57,16 @@ module.exports = {
     console.log(`Registering ${siteURL} in the leaderboard`);
 
     // run a loop to send the submission every second
-    while (true) {
-      await fetch('https://compose-challenge.netlify.app/submission', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          url: siteURL,
-          repoUrl: repoURL,
-        }),
-      });
 
-      await new Promise((resolve) => setTimeout(resolve,  100));
-    }
-
-    // await fetch('https://compose-challenge.netlify.app/submission', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     url: siteURL,
-    //     repoUrl: repoURL,
-    //   }),
-    // });
+    await fetch('https://compose-challenge.netlify.app/submission', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: siteURL,
+        repoUrl: repoURL,
+      }),
+    });
   },
 };
