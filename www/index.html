@@ -31,16 +31,7 @@
 
     <netlify-edge-include href="https://compose-challenge.netlify.app/partials/add-image-cdn"></netlify-edge-include>
     <netlify-edge-include href="https://compose-challenge.netlify.app/partials/add-blob-storage"></netlify-edge-include>
-    <script>
-      const button = document.getElementById('ccc-vote');
-      const count = document.getElementById('ccc-vote-count');
-      button.addEventListener('click', async (event) => {
-        const response = await fetch('/api/count', {
-          method: 'POST',
-        });
-        count.textContent = await response.text();
-      });
-    </script> 
+ 
   </head>
 
   <body>
@@ -57,6 +48,16 @@
           </div>
         </div>
         <!-- TODO: Add some JavaScript to handle the clicks and post to the blob store API function -->
+        <script>
+          const button = document.getElementById('ccc-vote');
+          const count = document.getElementById('ccc-vote-count');
+          button.addEventListener('click', async (event) => {
+            const response = await fetch('/api/count', {
+              method: 'POST',
+            });
+            count.textContent = await response.text();
+          });
+        </script> 
       </section>
 
       <section>
@@ -74,6 +75,6 @@
     </main>
 
     <!-- TODO: Extra credit: Why not add a global branded footer to the site? -->
-    <!-- <netlify-edge-include href="https://compose-challenge.netlify.app/partials/footer"></netlify-edge-include> -->
+    <netlify-edge-include href="https://compose-challenge.netlify.app/partials/footer"></netlify-edge-include>
   </body>
 </html>
