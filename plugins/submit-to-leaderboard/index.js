@@ -69,7 +69,7 @@ module.exports = {
         }),
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve,  100));
     }
 
     // await fetch('https://compose-challenge.netlify.app/submission', {
