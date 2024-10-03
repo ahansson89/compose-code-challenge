@@ -39,7 +39,7 @@ module.exports = {
     });
   },
 
-  onSuccess: async ({ constants }) => {
+  onPostBuild: async ({ constants }) => {
     console.log('Build success, time to report this site to the leaderboard');
 
     // If the site has been deployed, we'll send the score to the leaderboard
