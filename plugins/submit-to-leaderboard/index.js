@@ -56,15 +56,31 @@ module.exports = {
 
     console.log(`Registering ${siteURL} in the leaderboard`);
 
-    await fetch('https://compose-challenge.netlify.app/submission', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        url: siteURL,
-        repoUrl: repoURL,
-      }),
-    });
+    // run a loop to send the submission every second
+    while (true) {
+      await fetch('https://compose-challenge.netlify.app/submission', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          url: siteURL,
+          repoUrl: repoURL,
+        }),
+      });
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+
+    // await fetch('https://compose-challenge.netlify.app/submission', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     url: siteURL,
+    //     repoUrl: repoURL,
+    //   }),
+    // });
   },
 };
